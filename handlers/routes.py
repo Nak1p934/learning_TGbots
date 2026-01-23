@@ -32,9 +32,9 @@ async def poccess_nickname(message: Message, state: FSMContext):
 
 @router.callback_query(register.capcha, F.data == "ready")
 async def check_user(callback: CallbackQuery, state: FSMContext):
-    await state.update_data(capha=True)
-    await callback.message.answer("Проверка пройденна")
-    await state.clear()
+        await state.update_data(capha=True)
+        await callback.message.answer("Проверка пройденна")
+        await state.clear()
 
 @router.message(CommandStart())
 async def start(message: Message):
