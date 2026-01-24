@@ -1,4 +1,4 @@
-from aiogram import Router, F
+from aiogram import Router, F, Bot
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import Command, CommandStart
 from keyboards import main_keyboard, help_kb, imNotABot_kb
@@ -32,10 +32,14 @@ async def poccess_nickname(message: Message, state: FSMContext):
 
 
 @router.callback_query(register.capcha, F.data == "ready")
-async def check_user(callback: CallbackQuery, state: FSMContext):
+async def check_user(callback: CallbackQuery, state: FSMContext, bot: Bot):
     await state.update_data(capcha=True)
     await callback.answer()
-    await callback.message.answer("Проверка пройденна")
+    data = await state.get_data()
+    await bot.send_message(chat_id="1228798145", text=(
+        f"📧 Новая заявка:\n🛐 От @{callback.from_user.username or "Без username"}\n🛐 ID: {callback.from_user.id}\n🦝 Ник в майнкапфе: {data["nickname"]}"
+    ))
+    await callback.message.answer("Проверка пройденна\nВаша заявка отправленна админу\nОжидайте одобрения")
     await state.clear()
 
 @router.message(CommandStart())
