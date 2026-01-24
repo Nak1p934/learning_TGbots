@@ -1,7 +1,7 @@
 from aiogram import Router, F, Bot
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import Command, CommandStart
-from keyboards import main_keyboard, help_kb, imNotABot_kb
+from keyboards import main_keyboard, help_kb, imNotABot_kb, approve_kb
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.context import FSMContext
 
@@ -37,10 +37,24 @@ async def check_user(callback: CallbackQuery, state: FSMContext, bot: Bot):
     await callback.answer()
     data = await state.get_data()
     await bot.send_message(chat_id="1228798145", text=(
-        f"📧 Новая заявка:\n🛐 От @{callback.from_user.username or "Без username"}\n🛐 ID: {callback.from_user.id}\n🦝 Ник в майнкапфе: {data["nickname"]}"
-    ))
+        f"📧 Новая заявка:\n🛐 От @{callback.from_user.username or "Без username"}\n🆔 ID: {callback.from_user.id}\n🦝 Ник в майнкапфе: {data["nickname"]}"), reply_markup=approve_kb(callback.from_user.id))
     await callback.message.answer("Проверка пройденна\nВаша заявка отправленна админу\nОжидайте одобрения")
     await state.clear()
+
+
+@router.callback_query(F.data.startswith("aplly:"))
+async def aplly(callback: CallbackQuery, bot: Bot):
+    user_id = int(callback.dats.split(":")[1])
+    await bot.send_message(chat_id=user_id, text="Ваша заявка одобренна\n IP: ЯНеЕбуКакойТамIP")
+    await callback.message.answer("Заявка одобренна")
+
+
+@router.callback_query(F.data.startswith("deny:"))
+async def aplly(callback: CallbackQuery, bot: Bot):
+    user_id = int(callback.dats.split(":")[1])
+    await bot.send_message(chat_id=user_id, text="Ваша заявка отклонена")
+    await callback.message.answer("Заявка отклоненна")
+
 
 @router.message(CommandStart())
 async def start(message: Message):

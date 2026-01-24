@@ -13,3 +13,7 @@ help_kb = InlineKeyboardMarkup(inline_keyboard=[
 imNotABot_kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="Я не бот", callback_data="ready")]
 ])
+def approve_kb(user_id: int):
+    aplly_kb = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="✅", callback_data=f"aplly:{user_id}"), InlineKeyboardButton(text="❌", callback_data=f"deny:user_id")]
+    ])
