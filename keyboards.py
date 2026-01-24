@@ -15,5 +15,5 @@ imNotABot_kb = InlineKeyboardMarkup(inline_keyboard=[
 ])
 def approve_kb(user_id: int):
     return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="✅", callback_data=f"aplly:{user_id}"), InlineKeyboardButton(text="❌", callback_data=f"deny:user_id")]
+        [InlineKeyboardButton(text="✅", callback_data=f"aplly:{user_id}"), InlineKeyboardButton(text="❌", callback_data=f"deny:{user_id}")]
     ])
