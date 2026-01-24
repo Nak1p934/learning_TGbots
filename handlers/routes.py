@@ -36,7 +36,7 @@ async def check_user(callback: CallbackQuery, state: FSMContext, bot: Bot):
     await state.update_data(capcha=True)
     await callback.answer()
     data = await state.get_data()
-    await bot.send_message(chat_id="1228798145", text=(
+    await bot.send_message(chat_id="2125943635", text=(
         f"📧 Новая заявка:\n🛐 От @{callback.from_user.username or "Без username"}\n🆔 ID: {callback.from_user.id}\n🦝 Ник в майнкапфе: {data["nickname"]}"), reply_markup=approve_kb(callback.from_user.id))
     await callback.message.answer("Проверка пройденна\nВаша заявка отправленна админу\nОжидайте одобрения")
     await state.clear()
