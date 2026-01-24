@@ -47,7 +47,7 @@ async def aplly(callback: CallbackQuery, bot: Bot):
     
     user_id = int(callback.dats.split(":")[1])
     await bot.send_message(chat_id=user_id, text="Ваша заявка одобренна\n IP: ЯНеЕбуКакойТамIP")
-    await callback.message.answer("Заявка одобренна")
+    await callback.message.edit_text(callback.message.text + "Заявка одобренна")
     await callback.answer("Заявка одобренна")
 
 
@@ -55,7 +55,7 @@ async def aplly(callback: CallbackQuery, bot: Bot):
 async def aplly(callback: CallbackQuery, bot: Bot):
     user_id = int(callback.dats.split(":")[1])
     await bot.send_message(chat_id=user_id, text="Ваша заявка отклонена")
-    await callback.message.answer("Заявка отклоненна")
+    await callback.message.edit_text(callback.message.text + "Заявка отклоненна")
     await callback.answer("Заявка Отклонена")
 
 
