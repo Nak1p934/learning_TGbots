@@ -36,7 +36,7 @@
 Например изменить фото, добавить описание и т. п.
 2. Commands  
 Здесь мы можем добавить команды для быстрого доступа пользователю.  
-![Пример использования таких кнопок](resurses/imageExampleButton.jpg) 
+![Пример использования таких кнопок](resurses/imageExampleButton.jpg)  
 Для того что бы он не вводил "/example_command_4243_give_me_my_id", а просто нажал на кнопку над клавиатурой и эта команда отправилась боту
 3. mini apps  
 Этот раздел я ещё сам полохо знаю, возможно он вообще не будет рассматриваться в данном репозитории
@@ -119,7 +119,29 @@ router_less1 = Router()
 async def echo(message: Message):
     await message.answer(f"Ваше сообщение: {message.text}")
 ```  
+А вот так будет выгледеть файл run.py  
+```
+from aiogram import Dispatcher, Bot
+from BOTTOKEN import TOKEN
+import asyncio
+from routes import router
+
+
+async def main():
+    dp = Dispatcher()
+    bot = Bot(token=TOKEN)
+    dp.include_router(router)
+    await dp.start_polling(bot)
+
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main()) 
+    except:
+        print("Завершение работы")
+```  
 Теперь возвращаемся к файлу run.py и импортируем там наш файл с роутерами и передаём наш роутер в dp.include_router  
 На этом всё наш бот готов можно запускать наш файл run.py  
+Остановить скрипт можно нажав в терменале Ctrl + C  
 P. S. Советою занисти папку pycache в .gitignore `__pycache__/`  
 ![Пример работы бота](resurses/imageForFirstRouter.jpg)
