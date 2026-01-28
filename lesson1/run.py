@@ -1,7 +1,7 @@
 from aiogram import Dispatcher, Bot
-from BOTTOKEN_LESS1 import TOKEN1
 import asyncio
 from routes_for_lesson1 import router_less1
+from BOTTOKEN_LESS1 import TOKEN1
 
 
 async def main_less1():
