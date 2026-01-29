@@ -69,6 +69,9 @@ async def help(message: Message):
     await message.answer("Start bot - /start \nshow this menu - /help", reply_markup=help_kb)
 
 
+
+
+
 @router.message()
 async def echo(message: Message, bot: Bot):
     await message.answer(f"ID: {message.forward_from.id}\nUsername: {"@" + message.forward_from.username}\nLang: {message.forward_from.language_code}")
