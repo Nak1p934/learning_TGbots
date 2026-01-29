@@ -12,4 +12,7 @@ async def main_less2():
 
 
 if __name__ == "__main__":
-        asyncio.run(main_less2)
+    try:
+        asyncio.run(main_less2())
+    except:
+        print("Завершение работы")
