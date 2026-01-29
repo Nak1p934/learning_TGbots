@@ -5,7 +5,7 @@ from routes_lesson2 import router_less2
 
 async def main_less2():
     dp_less2 = Dispatcher()
-    bot_less2 = Bot()
+    bot_less2 = Bot(token=TOKEN_LESS2)
     dp_less2.include_router(router_less2)
     await dp_less2.start_polling(bot_less2)
 
