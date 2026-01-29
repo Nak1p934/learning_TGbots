@@ -1,25 +1,28 @@
 from aiogram.filters import Command, CommandStart
 from aiogram import Router
 from aiogram.types import Message
-router_less2 = Router()
+router_less2 = Router() # Импорты и создание переменной роутера
 
 
-@router_less2.message(CommandStart())
-async def start(message: Message):
-    await message.answer("Добро пожаловать в нашего бота!")
+@router_less2.message(CommandStart()) # обработчик команды старт
+async def start(message: Message): # функция старт
+    await message.answer("Добро пожаловать в нашего бота!") # Отправка сообщения
 
 
-@router_less2.message(Command("send_hi"))
-async def send_hi(message: Message):
+@router_less2.message(Command("send_hi")) # Обработчик команды send_hi?, заметьте что название команды это строка!
+async def send_hi(message: Message): 
     await message.answer("Hi!")
 
 
-@router_less2.message(Command("help"))
-async def help(message: Message):
-    await message.answer("Вот список команд:")
-    await message.answer("/start\n/help\n/send_hi")
+@router_less2.message(Command("help")) # Обработчик команды help
+async def help(message: Message): # Можно отправить сразу несколько сообщений так же можно сделать sleep что бы пот подождал перед отправкой следующего сообщения
+    await message.answer("Вот список команд:") # Первое сообщение
+    await message.answer("/start\n/help\n/send_hi") # Второе сообщение. Пользователь может нажать на команды и они отправятся в чат
 
 
-@router_less2.message()
-async def nothing(message: Message):
-    await message.reply("Такой команды нет😓")
+@router_less2.message() # Обработчик исключения
+async def nothing(message: Message): # Срабатывает когда не один роутер не сработал
+    await message.reply("Такой команды нет😓") # Бот может отправлять смайлики, а так же отвечает на конкретное сообщение с помощью reply
+# Обратите внимание ^ обрпботчик стоит в конце всех роутеров
+# На этом урок всё <3
+# Happy pythoning <3

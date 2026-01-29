@@ -145,7 +145,7 @@ if __name__ == "__main__":
 На этом всё наш бот готов можно запускать наш файл run.py  
 Остановить скрипт можно нажав в терменале Ctrl + C  
 P. S. Советою занисти папку pycache в .gitignore `__pycache__/`  
-![Пример работы бота](resurses/imageForFirstRouter.jpg)
+![Пример работы бота](resurses/imageForFirstRouter.jpg)  
 Весь код данного урока вы можете найти в папке lesson1
 # Импорты
 Теперь поговорим про импорты что за что отвечает, в каких файлах лучше делать импоры и т. п.  
@@ -178,17 +178,18 @@ from BOTTOKEN_LESS1 import TOKEN1
 3. KeyboardButton
 4. ReplyKeyboardMarkup
 5. InlineKeyboardButton
-6. InlineKeyboardMarkup 
+6. InlineKeyboardMarkup  
 Мы помним что в нашем роутере была ассинхронная функция в которой мы создавали переменную и предовали ей тип данных `Message`, так же мы можем использовать другие типы данных.
 ## Команды
 Из `aiogram.filers` мы можем импортировать:
 1. Command
-2. CommandStart
+2. CommandStart  
 Спомощью них мы можем обрабатывать свои команды и команду старт соответственно
 ## FSM
 Из `aiogram.fsm.state` мы можем импортировать:
 1. StatesGroup
-2. State
+2. State  
+
 Из `aiogram.fsm.context` можем импортировать `FSMContext`
 ВНИМАНИЕ FSM мы разберём позже пока можете это не запоминать  
 На этом импотры мы закончим, но здесь не все импорты их куда больше это основы с которыми мы будем работать  
