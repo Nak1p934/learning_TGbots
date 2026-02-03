@@ -8,6 +8,6 @@ main_kb = ReplyKeyboardMarkup(keyboard=[
 async def coco():
     coco_keyboard = ReplyKeyboardMarkup([
         [KeyboardButton(text="Являюсь")],
-        [KeyboardButton(text="Нет😭")]
-    ], resize_keyboard=True, input_field_placeholder="Изменил надпись", one_time_keyboard=True)
+        [KeyboardButton(text="Нет")]
+], resize_keyboard=True, input_field_placeholder="Изменил надпись", one_time_keyboard=True)
     return coco_keyboard
