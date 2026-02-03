@@ -10,3 +10,4 @@ async def coco():
         [KeyboardButton(text="Являюсь")],
         [KeyboardButton(text="Нет😭")]
     ], resize_keyboard=True, input_field_placeholder="Изменил надпись", one_time_keyboard=True)
+    return coco_keyboard
