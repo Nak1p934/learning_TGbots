@@ -12,4 +12,4 @@ async def test_reply(message: Message):
 
 @router.message(F.text == "Да")
 async def new_kb(message: Message):
-    await message.answer(text="Вы гражданин Японии?", reply_markup=await coco())
+    await message.reply("Вы гражданин Японии?", reply_markup=await coco())
