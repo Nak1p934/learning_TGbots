@@ -1,18 +1,18 @@
-from aiogram.types import ReplyKeyboardMarkup, keyboard_button, Message
-from aiogram import Router, F
+from aiogram.types import Message
+from aiogram import Router, F # Не обращайте внимание на это разберём потом
 from aiogram.filters import Command
-from keyboards_less3 import main_kb, coco
+from keyboards_less3 import main_kb, coco # Импорт клавиатур
 
 router = Router()
 
 @router.message(Command("test"))
-async def test_reply(message: Message):
-    await message.answer(text="Вы старше 18 лет?", reply_markup=main_kb)
+async def test_reply(message: Message): 
+    await message.answer(text="Вы старше 18 лет?", reply_markup=main_kb) # Выбераем нашу клавиатуру
 
 
-@router.message(F.text == "Да")
+@router.message(F.text == "Да") # Не обращайте внимание, забегая вперёд скажу что это фильтр
 async def new_kb(message: Message):
-    await message.reply(f"Вы гражданин Японии?is bot{message.from_user.is_bot}\n prem {message.from_user.is_premium}", reply_markup=await coco())
+    await message.reply(f"Вы гражданин Японии?", reply_markup=await coco()) # клавиатура результат выполнения функции
 
 @router.message(Command("info"))
 async def info(message: Message):
@@ -29,7 +29,9 @@ can_connect_to_business: {message.from_user.can_connect_to_business}
 can_join_groups: {message.from_user.can_join_groups}
 can_read_all_group_messages: {message.from_user.can_read_all_group_messages}
 has_main_web_app: {message.from_user.has_main_web_app}
-model_config: {message.from_user.model_config}
+model_config: {message.from_user.model_config} 
 supports_inline_queries: {message.from_user.supports_inline_queries}
 Всё...
 ''')
+# Кто нибудь разберитесь что делает model_config
+# Happy pythoning <3
