@@ -15,3 +15,4 @@ if __name__ == "__main__":
         asyncio.run(main())
     except:
         print("Завершение работы")
+# Тут ничего нового
