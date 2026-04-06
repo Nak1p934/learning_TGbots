@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Operator Chat</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .chat {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .user {
+            background: #e3f2fd;
+            text-align: left;
+        }
+
+        .operator {
+            background: #e8f5e9;
+            text-align: right;
+        }
+
+        .meta {
+            font-size: 12px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat" id="chat"></div>
+
+<script>
+    const operatorId = {{ operatorId }} // 👈 тут меняешь под страницу
+
+    async function loadMessages() {
+        const res = await fetch(`http://127.0.0.1:8000/operator/${operatorId}`);
+        const data = await res.json();
+
+        // сортировка по времени (если строка HH:MM)
+        data.sort((a, b) => a.time.localeCompare(b.time));
+
+        const chat = document.getElementById("chat");
+        chat.innerHTML = "";
+
+        data.forEach(msg => {
+            const div = document.createElement("div");
+            div.classList.add("message");
+
+            if (msg.who_sender === "user") {
+                div.classList.add("user");
+                div.innerHTML = `
+                    <div class="meta">User ${msg.sender} → Operator (${msg.time})</div>
+                    <div>${msg.text}</div>
+                `;
+            } else {
+                div.classList.add("operator");
+                div.innerHTML = `
+                    <div class="meta">Operator → User ${msg.sender} (${msg.time})</div>
+                    <div>${msg.text}</div>
+                `;
+            }
+
+            chat.appendChild(div);
+        });
+    }
+
+    // первая загрузка
+    loadMessages();
+
+    // обновление каждые 5 секунд
+    setInterval(loadMessages, 5000);
+</script>
+
+</body>
+</html>
